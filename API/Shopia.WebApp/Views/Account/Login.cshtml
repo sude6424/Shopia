@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="max-width: 320px; width: 100%;">
+        <h4 style="text-align: center; margin-bottom: 15px;">Giriş Yap</h4>
+        <form method="post" action="/Account/Login">
+            <div class="mb-2">
+                <label for="email" class="form-label">E-Posta</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="E-Posta" required>
+            </div>
+            <div class="mb-2">
+                <label for="password" class="form-label">Şifre</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Şifre" required>
+            </div>
+            <!-- Butonun genişliği max-width ile sınırlanacak ve daha küçük yapılacak -->
+            <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 280px; padding: 8px 0; font-size: 16px; margin: 0 auto;">Giriş Yap</button>
+        </form>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <a href="#" class="btn btn-link p-0" style="font-size: 14px;">Şifremi Unuttum</a>
+            <a href="/Account/Register" class="btn btn-link p-0" style="font-size: 14px;">Kayıt Ol</a>
+        </div>
+    </div>
+</div>
+ 

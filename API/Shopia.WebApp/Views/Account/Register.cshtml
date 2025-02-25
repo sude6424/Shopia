@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="max-width: 320px; width: 100%;">
+        <h4 style="text-align: center; margin-bottom: 15px;">Kayıt Ol</h4>
+        <form method="post" action="/Account/Register">
+            <div class="mb-2">
+                <label for="name" class="form-label">Adınız</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Adınızı girin" required>
+            </div>
+            <div class="mb-2">
+                <label for="lastname" class="form-label">Soyadınız</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Soyadınızı girin" required>
+            </div>
+            <div class="mb-2">
+                <label for="email" class="form-label">E-Posta</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="E-Posta adresinizi girin" required>
+            </div>
+            <div class="mb-2">
+                <label for="phonenumber" class="form-label">Telefon</label>
+                <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="5XX-XXX-XXXX" required>
+
+            </div>
+            <div class="mb-2">
+                <label for="phone" class="form-label">Şifreniz</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Şifreniz" required>
+            </div>
+            <div class="mb-2">
+                <label for="phone" class="form-label">Şifreniz Tekrar</label>
+                <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Şifreniz Tekrar" required>
+            </div>
+            <!-- Şifre ve Şifre Tekrar Alanlarını Kaldırdık -->
+            <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 280px; padding: 8px 0; font-size: 16px; margin: 0 auto;">Kayıt Ol</button>
+        </form>
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <a href="/Account/Login" class="btn btn-link p-0" style="font-size: 14px;">Giriş Yap</a>
+        </div>
+    </div>
+</div>

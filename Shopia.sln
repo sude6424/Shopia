@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{33F29561-837A-4234-898E-B6DF40D33D42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{333AF0F4-079E-483C-97C8-A6DD46862F97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{F17B8A33-FE4A-45D4-87B1-44D0F6B12CDC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{40B066B7-633A-471C-BFE9-755C8957C892}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopia.Application", "Core\Shopia.Application\Shopia.Application.csproj", "{57E58482-2110-4EB1-8EC4-945EF8648D49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopia.Domain", "Core\Shopia.Entities\Shopia.Domain.csproj", "{36F291E9-E00A-434C-9402-79E9445A4D37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopia.DataAccess", "Data\Shopia.DataAccess\Shopia.DataAccess.csproj", "{A00CFC35-48AB-434E-9B5E-1F1C733D479C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopia.WebApi", "API\Shopia.WebApi\Shopia.WebApi.csproj", "{62BCA9D4-E532-4AED-8788-E843736A6E9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopia.WebApp", "API\Shopia.WebApp\Shopia.WebApp.csproj", "{7C761769-1564-4B20-AE60-3BF67D4F566D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57E58482-2110-4EB1-8EC4-945EF8648D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E58482-2110-4EB1-8EC4-945EF8648D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E58482-2110-4EB1-8EC4-945EF8648D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E58482-2110-4EB1-8EC4-945EF8648D49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36F291E9-E00A-434C-9402-79E9445A4D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36F291E9-E00A-434C-9402-79E9445A4D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36F291E9-E00A-434C-9402-79E9445A4D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36F291E9-E00A-434C-9402-79E9445A4D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A00CFC35-48AB-434E-9B5E-1F1C733D479C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A00CFC35-48AB-434E-9B5E-1F1C733D479C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A00CFC35-48AB-434E-9B5E-1F1C733D479C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A00CFC35-48AB-434E-9B5E-1F1C733D479C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62BCA9D4-E532-4AED-8788-E843736A6E9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62BCA9D4-E532-4AED-8788-E843736A6E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62BCA9D4-E532-4AED-8788-E843736A6E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62BCA9D4-E532-4AED-8788-E843736A6E9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C761769-1564-4B20-AE60-3BF67D4F566D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C761769-1564-4B20-AE60-3BF67D4F566D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C761769-1564-4B20-AE60-3BF67D4F566D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C761769-1564-4B20-AE60-3BF67D4F566D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{57E58482-2110-4EB1-8EC4-945EF8648D49} = {33F29561-837A-4234-898E-B6DF40D33D42}
+		{36F291E9-E00A-434C-9402-79E9445A4D37} = {33F29561-837A-4234-898E-B6DF40D33D42}
+		{A00CFC35-48AB-434E-9B5E-1F1C733D479C} = {333AF0F4-079E-483C-97C8-A6DD46862F97}
+		{62BCA9D4-E532-4AED-8788-E843736A6E9F} = {F17B8A33-FE4A-45D4-87B1-44D0F6B12CDC}
+		{7C761769-1564-4B20-AE60-3BF67D4F566D} = {F17B8A33-FE4A-45D4-87B1-44D0F6B12CDC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55ADD7BE-6DC6-4925-B5C0-B98A99F37E46}
+	EndGlobalSection
+EndGlobal
