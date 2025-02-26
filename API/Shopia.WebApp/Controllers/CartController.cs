@@ -46,6 +46,7 @@ namespace Shopia.WebApp.Controllers
                         cartItems = JsonSerializer.Deserialize<CreateCartDTO>(cartData1) ?? new CreateCartDTO();
                     }
 
+
                     GetByIdCartDTO detailedCartItems = new GetByIdCartDTO();
                     detailedCartItems.CartItems = new List<ResultCartItemDTO>();
                     var totalsum = 0;
@@ -54,6 +55,7 @@ namespace Shopia.WebApp.Controllers
                     foreach (var item in cartItems.CartItems)
                     {
                         var detailedItem = await _productServices.GetByIdProductAsync(item.ProductId);
+
 
                         var newproduct = new Product();
 
@@ -64,16 +66,20 @@ namespace Shopia.WebApp.Controllers
                         newproduct.Description = detailedItem.Description;
                         newproduct.CategoryId = detailedItem.CategoryId;
                         newproduct.Stock = detailedItem.Stock;
+
                         totalsum += item.TotalPrice;
 
 
                         var newcartItem = new ResultCartItemDTO
                         {
                             Quantity = item.Quantity,
+
                             TotalPrice = item.TotalPrice,
                             ProductId = item.ProductId,
                             Product = newproduct,
                         };
+
+
 
                         detailedCartItems.CartItems.Add(newcartItem);
                     }
@@ -103,11 +109,11 @@ namespace Shopia.WebApp.Controllers
                     if (checkcart)
                     {
                         var cart = await _cartServices.GetByUserIdCartAsync(userid);
-                        var check = await _cartItemServices.CheckCartItem(model.CartId, model.ProductId);
+                        var check = await _cartItemServices.CheckCartItem(cart.CartId, model.ProductId);
 
                         if (check)
                         {
-                            await _cartItemServices.UpdateQuantity(model.CartId, model.ProductId, model.Quantity);
+                            await _cartItemServices.UpdateQuantity(cart.CartId, model.ProductId, model.Quantity);
                         }
                         else
                         {
@@ -115,7 +121,7 @@ namespace Shopia.WebApp.Controllers
                             await _cartItemServices.CreateCartItemAsync(model);
                         }
                         var sumprice = cart.TotalAmount + model.TotalPrice;
-                        await _cartServices.UpdateTotalAmount(model.CartId, sumprice);
+                        await _cartServices.UpdateTotalAmount(cart.CartId, sumprice);
                     }
                     else
                     {
@@ -139,13 +145,16 @@ namespace Shopia.WebApp.Controllers
                         await _cartServices.UpdateTotalAmount(model.CartId, sumprice);
                     }
 
+
+
+
                 }
                 else
                 {
                     string cookieName = "cart";
                     CreateCartDTO cartItems;
 
-                    if (Request.Cookies.TryGetValue("cart", out string cartData))
+                    if (Request.Cookies.TryGetValue(cookieName, out string cartData))
                     {
                         cartItems = JsonSerializer.Deserialize<CreateCartDTO>(cartData) ?? new CreateCartDTO();
                     }
@@ -162,11 +171,13 @@ namespace Shopia.WebApp.Controllers
                     var existingItem = cartItems.CartItems.FirstOrDefault(item => item.ProductId == model.ProductId);
                     if (existingItem != null)
                     {
+
                         existingItem.Quantity += model.Quantity;
                         existingItem.TotalPrice += model.TotalPrice;
                     }
                     else
                     {
+
                         cartItems.CartItems.Add(model);
                     }
 
@@ -179,12 +190,14 @@ namespace Shopia.WebApp.Controllers
                         Secure = true
                     });
                 }
+
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                return Json(new { error = ex.Message });
+                return Json(new { error = ex });
             }
+
         }
 
         [HttpGet]
@@ -208,6 +221,7 @@ namespace Shopia.WebApp.Controllers
                 {
                     string cookieName = "cart";
 
+
                     CreateCartDTO cartItems;
 
 
@@ -225,6 +239,7 @@ namespace Shopia.WebApp.Controllers
                             CartItems = new List<CreateCartItemDTO>()
                         };
                     }
+
                     var existingItem = cartItems.CartItems.FirstOrDefault(item => item.ProductId == productId);
                     if (existingItem != null)
                     {
@@ -232,6 +247,7 @@ namespace Shopia.WebApp.Controllers
                     }
                     else
                     {
+
                         cartItems.CartItems.Add(new CreateCartItemDTO());
                     }
                     var updatedCartData = JsonSerializer.Serialize(cartItems);
@@ -243,11 +259,12 @@ namespace Shopia.WebApp.Controllers
                         Secure = true
                     });
                 }
+
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                return Json(new { error = ex.Message });
+                return Json(new { error = ex });
             }
         }
         [HttpPost]
@@ -268,6 +285,9 @@ namespace Shopia.WebApp.Controllers
                     {
                         await _cartItemServices.DeleteCartItemAsync(cartItem.CartItemId);
                     }
+
+
+
 
                     // Miktar geçerli mi kontrol et
                     if (dto.Quantity > 0)
@@ -300,6 +320,7 @@ namespace Shopia.WebApp.Controllers
                             CartItems = new List<CreateCartItemDTO>()
                         };
                     }
+
                     var existingItem = cartItems.CartItems.FirstOrDefault(item => item.ProductId == dto.ProductId);
                     var cookieproduct = await _productServices.GetByIdProductAsync(dto.ProductId);
                     if (existingItem != null)
@@ -325,8 +346,10 @@ namespace Shopia.WebApp.Controllers
                     }
                     else
                     {
+
                         cartItems.CartItems.Add(new CreateCartItemDTO());
                     }
+
 
                     // Sepet verisini güncelle
                     var updatedCartData = JsonSerializer.Serialize(cartItems);
@@ -337,17 +360,18 @@ namespace Shopia.WebApp.Controllers
                         HttpOnly = true,
                         Secure = true
                     });
+
                 }
 
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                return Json(new
-                {
-                    error = ex.Message
-                });
+                return Json(new { error = ex });
+
+
             }
+
         }
     }
 }

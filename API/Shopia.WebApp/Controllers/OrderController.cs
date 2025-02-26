@@ -178,7 +178,7 @@ namespace Shopia.WebApp.Controllers
                     };
                     result.Add(newOrderItem);
                 }
-
+                dto.UserId = await _userIdentityRepository.GetUserIdOnAuth(User);
                 dto.CustomerId = 14; // Örnek, gerçek değeri burada kullan
                 dto.OrderItems = result;
                 dto.OrderStatus = "Siparişiniz Alındı!";

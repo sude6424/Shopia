@@ -13,11 +13,11 @@
                     {
                         <div class="col-md-6 form-group">
                             <label>Ad</label>
-                            <input type="text" class="form-control" name="customerFirstname" id="customerFirstname" placeholder="Adınızı girin" required>
+                            <input type="text" class="form-control" name="customerName" id="customerName" placeholder="Adınızı girin" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Soyad</label>
-                            <input type="text" class="form-control" name="customerLastname" id="customerLastname" placeholder="Soyadınızı girin" required>
+                            <input type="text" class="form-control" name="customerSurname" id="customerSurname" placeholder="Soyadınızı girin" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
@@ -25,18 +25,18 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Telefon</label>
-                            <input type="text" class="form-control" name="customerPhoneNumber" id="customerPhoneNumber" placeholder="5XX-XXX-XXXX" required>
+                            <input type="text" class="form-control" name="CustomerPhone" id="CustomerPhone" placeholder="5XX-XXX-XXXX" required>
                         </div>
                     }
                     else
                     {
                         <div class="col-md-6 form-group">
                             <label>Ad</label>
-                            <input class="form-control" type="text" placeholder="Ad" name="customerFirstname" id="customerFirstname" required value="@Model.Customer.Firstname">
+                            <input class="form-control" type="text" placeholder="Ad" name="customerName" id="customerName" required value="@Model.Customer.Firstname">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Soyad</label>
-                            <input class="form-control" type="text" placeholder="Soyad" name="customerLastname" id="customerLastname" required value="@Model.Customer.LastName">
+                            <input class="form-control" type="text" placeholder="Soyad" name="customerSurname" id="customerSurname" required value="@Model.Customer.LastName">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Telefon</label>
-                            <input class="form-control" type="text" placeholder="5XX-XXX-XXXX" name="customerPhoneNumber" id="customerPhoneNumber" required value="@Model.Customer.PhoneNumber">
+                            <input class="form-control" type="text" placeholder="5XX-XXX-XXXX" name="CustomerPhone" id="CustomerPhone" required value="@Model.Customer.PhoneNumber">
                         </div>
                     }
 
@@ -161,20 +161,20 @@
             e.preventDefault(); // Sayfanın yenilenmesini engelle
 
             var orderData = {
-                customerFirstname: $("#customerFirstname").val(),
-                customerLastname: $("#customerLastname").val(),
-                customerEmail: $("#customerEmail").val(),
-                customerPhoneNumber: $("#customerPhoneNumber").val(),
-                shippingCityId: $("#city").val(),
-                shippingTownId: $("#town").val(),
-                shippingAddress: $("#shippingAddress").val(),
+                customerName: $('#customerName').val(),
+                CustomerSurname: $('#customerSurname').val(),
+                customerEmail: $('#customerEmail').val(),
+                CustomerPhone: $('#CustomerPhone').val(),
+                shippingCityId: $('#city').val(),
+                shippingTownId: $('#town').val(),
+                shippingAddress: $('#shippingAddress').val(),
                 totalAmount: '@Model.TotalAmount'
             };
 
 
             var cartId = @Model.CartId;
 
-            if (!orderData.customerFirstname || !orderData.customerLastname || !orderData.customerEmail || !orderData.customerPhoneNumber || !orderData.shippingCityId || orderData.shippingCityId == "0" || !orderData.shippingTownId || !orderData.shippingAddress) {
+            if (!orderData.customerName || !orderData.customerSurname || !orderData.customerEmail || !orderData.CustomerPhone || !orderData.shippingCityId || orderData.shippingCityId == "0" || !orderData.shippingTownId || !orderData.shippingAddress) {
                 toastr.error('Lütfen tüm alanları doldurunuz.');
                 return;
             }
@@ -189,7 +189,7 @@
                     alert('Sipariş oluşturuldu');
                     window.location.href = '@Url.Action("Index", "Home")';
                 },
-                error: function () {
+                error: function (response) {
                     alert('Sipariş oluşturulurken bir hata oluştu.');
                 }
             });
