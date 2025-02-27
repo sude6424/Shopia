@@ -12,10 +12,11 @@ namespace Shopia.Application.Interface
     {
         Task<string> LoginAsync(LoginDTO DTO);
         Task<string> RegisterAsync(RegisterDTO DTO);
-        Task<string> ChangePasswordAsync();
+        Task<string> ChangePasswordAsync(ChangePasswordDTO dto);
         Task LogoutAsync();
         Task<bool> IsUserAuthenticated();
         Task<string> GetUserIdOnAuth(ClaimsPrincipal user);
+        Task<bool> UpdateUserNameAndSurnameAsync(string userId, string newName, string newSurname);
 
 
     }

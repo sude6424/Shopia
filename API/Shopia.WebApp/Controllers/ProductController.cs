@@ -12,22 +12,28 @@ namespace Shopia.WebApp.Controllers
             _productServices = productServices;
         }
 
-        public async Task<IActionResult> Index(int categoryId, decimal minprice, decimal maxprice, string search)
+        public async Task<IActionResult> Index(int categoryId, decimal minprice, decimal maxprice, string search, int pageNumber = 1, int pageSize = 6)
         {
-            if (categoryId !=0)
+            if (categoryId != 0)
             {
                 var values = await _productServices.GetProductByCategory(categoryId);
                 return View(values);
             }
-            if (maxprice!=0)
+            if (maxprice != 0)
             {
                 var values = await _productServices.GetProductByPrice(minprice, maxprice);
                 return View(values);
             }
-           
+
 
             var value = await _productServices.GetAllProductAsync();
-            return View(value);
+
+            var pageproduct = value.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            int totalProducts = value.Count();
+            int totalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.TotalPages = totalPages;
+            return View(pageproduct);
         }
         [HttpPost]
         public async Task<IActionResult> Index(string search)

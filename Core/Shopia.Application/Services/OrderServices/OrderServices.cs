@@ -52,6 +52,7 @@ namespace Shopia.Application.Services.OrderServices
                 CustomerSurname = model.CustomerSurname,
                 CustomerEmail = model.CustomerEmail,
                 CustomerPhone = model.CustomerPhone,
+                UserId=model.UserId,
             };
             await _repository.CreateAsync(order);
 

@@ -32,13 +32,13 @@ namespace Shopia.Application.Services.CustomerServices
 
         public async Task DeleteCustomerAsync(int id)
         {
-            var values= await _repository.GetByIdAsync(id);
+            var values = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(values);
         }
 
         public async Task<List<ResultCustomerDTO>> GetAllCustomerAsync()
         {
-            var values= await _repository.GetAllAsync();
+            var values = await _repository.GetAllAsync();
             return values.Select(x => new ResultCustomerDTO
             {
                 CustomerId = x.CustomerId,
@@ -78,7 +78,7 @@ namespace Shopia.Application.Services.CustomerServices
                 UserId = customer.UserId,
                 PhoneNumber = customer.PhoneNumber,
             };
-            }
+        }
 
         public async Task UpdateCustomerAsync(UpdateCustomerDTO updateCustomerDTO)
         {
@@ -87,6 +87,15 @@ namespace Shopia.Application.Services.CustomerServices
             values.LastName = updateCustomerDTO.LastName;
             values.Email = updateCustomerDTO.Email;
             values.PhoneNumber = updateCustomerDTO.PhoneNumber;
+            await _repository.UpdateAsync(values);
+        }
+
+        public async Task UpdateNameAndSurname(string name, string surname, string userId)
+        {
+            var values = await _repository.FirstOrDefaultAsync(x => x.UserId == userId);
+           
+            values.Firstname = name;
+            values.LastName = surname;
             await _repository.UpdateAsync(values);
         }
     }

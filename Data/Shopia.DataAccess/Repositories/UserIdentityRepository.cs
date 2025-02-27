@@ -22,14 +22,34 @@ namespace Shopia.DataAccess.Repositories
             _signInManager = signInManager;
         }
 
-        public Task<string> ChangePasswordAsync()
+        public async Task<string> ChangePasswordAsync(ChangePasswordDTO dto)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByIdAsync(dto.UserId);
+            if (user == null)
+            {
+                return "User not found";
+            }
+            if (dto.NewPassword!=dto.ConfirmNewPassword)
+            {
+                return "şifreler aynı değil";
+            }
+            var result = await _userManager.ChangePasswordAsync(user, dto.Password, dto.NewPassword);
+            if (result.Succeeded)
+            {
+                return "şifre değiştirme başarılı";
+            }
+            var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+            return $"şifre değiştirme başarısız: {errors}";
+
         }
 
         public async Task<string> GetUserIdOnAuth(ClaimsPrincipal user)
         {
             string userId = _userManager.GetUserId(user);
+            if (userId==null)
+            {
+                userId = "1111111111111";
+            }
             return userId;
         }
 
@@ -100,6 +120,19 @@ namespace Shopia.DataAccess.Repositories
                 return result.Errors.ToString();
             }
             
+        }
+
+        public async Task<bool> UpdateUserNameAndSurnameAsync(string userId, string newName, string newSurname)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+            user.Name= newName;
+            user.Lastname= newSurname;
+            var result = await _userManager.UpdateAsync(user);
+            return result.Succeeded;
         }
     }
 }

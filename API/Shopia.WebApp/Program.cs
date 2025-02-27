@@ -11,6 +11,7 @@ using Shopia.Application.Services.CartItemServices;
 using Shopia.Application.Services.CartServices;
 using Shopia.Application.Services.CustomerServices;
 using Shopia.Application.Services.HelpServices;
+using Shopia.Application.Services.OrderItemServices;
 using Shopia.Application.Services.OrderServices;
 using Shopia.Application.Services.ProductServices;
 using Shopia.Application.Services.SubscriberServices;
@@ -48,6 +49,8 @@ builder.Services.AddScoped<IHelpServices, HelpServices>();
 builder.Services.AddScoped<ICustomerServices, CustomerServices>();
 builder.Services.AddScoped<IAccountServices, AccountServices>();
 builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
+builder.Services.AddScoped<IOrderItemServices, OrderItemServices>();
+
 
 // ✔ Identity Kullanıcı Yönetimi
 builder.Services.AddIdentity<AppIdentityUser, AppIdentityRole>()

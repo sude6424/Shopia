@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +12,9 @@ namespace Shopia.Application.Services.AccountServices
     {
         Task<string> Login(LoginDTO DTO);
         Task<string> Register(RegisterDTO DTO);
-        Task<string> ChangePassword();
+        Task<string> ChangePassword(ChangePasswordDTO dto);
         Task Logout();
-
+        Task<bool> UpdateUser(string userId, string name, string surname);
+        Task<string> GetUserIdAsync(ClaimsPrincipal user);
     }
 }

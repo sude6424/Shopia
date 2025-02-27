@@ -20,5 +20,6 @@ namespace Shopia.Application.Services.OrderServices
         Task<List<ResultTownDTO>> GetTownByCityId(int cityid);
         Task<List<ResultOrderDTO>> GetOrderByUserId(string userId);
 
+
     }
 }

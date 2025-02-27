@@ -15,5 +15,6 @@ namespace Shopia.Application.Services.CustomerServices
         Task UpdateCustomerAsync(UpdateCustomerDTO updateCustomerDTO);
         Task DeleteCustomerAsync(int id);
         Task<GetByIdCustomerDTO> GetCustomerByUserId(string userid);
+        Task UpdateNameAndSurname(string name, string surname, string userId);
     }
 }
